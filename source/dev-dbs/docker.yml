@@ -1,21 +1,28 @@
-version: '3'
+version: "3"
 services:
   postgres:
     container_name: gia_pg
+    hostname: pg-graphql
     image: agilelabs/gia-pg:main
     expose:
       - 5432
     ports:
-      - '5432:5432'
+      - "5432:5432"
     environment:
       - POSTGRES_DB=azdev
       - POSTGRES_PASSWORD=password
       - PGDATA=azdev-data
-  mongo:
-    container_name: gia_mongo
-    image: agilelabs/gia-mongo:main
-    command: --dbpath azdev-data/db
-    expose:
-      - 27017
-    ports:
-      - '27017:27017'
+    networks:
+      - pg-network
+  # mongo:
+  #   container_name: gia_mongo
+  #   image: agilelabs/gia-mongo:main
+  #   command: --dbpath azdev-data/db
+  #   expose:
+  #     - 27017
+  #   ports:
+  #     - "27017:27017"
+
+networks:
+  pg-network:
+    external: true

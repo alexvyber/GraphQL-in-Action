@@ -4,11 +4,14 @@ import {
   GraphQLBoolean,
   GraphQLString,
   GraphQLInt,
+  GraphQLList,
   GraphQLNonNull,
   printSchema,
 } from "graphql";
 import NumbersInRange from "./types/numbers-in-range";
 import { numbersInRangeObject } from "../utils/numbers-in-range";
+
+import Task from "./types/task";
 
 const QueryType = new GraphQLObjectType({
   name: "Query",
@@ -23,7 +26,7 @@ const QueryType = new GraphQLObjectType({
           setTimeout(() => {
             const isoString = new Date().toISOString();
             resolve(isoString.slice(11, 19));
-          }, 10000);
+          }, 0);
         });
       },
     },
@@ -52,6 +55,26 @@ const QueryType = new GraphQLObjectType({
       },
       resolve: (_source, { begin, end }) => numbersInRangeObject(begin, end),
     },
+
+    taskMainList: {
+      type: new GraphQLList(new GraphQLNonNull(Task)),
+      resolve: async (source, args, { pgPool }) => {
+        const pgResp = await pgPool.query(`
+      SELECT id, content, tags,
+          approach_count AS "approachCount", created_at AS "createdAt"
+      FROM azdev.tasks
+      WHERE is_private = FALSE
+      ORDER BY created_at DESC
+      LIMIT 100
+      `);
+
+        console.log(pgResp);
+
+        return pgResp.rows;
+      },
+    },
+
+    //
   },
 });
 
@@ -59,7 +82,7 @@ export const schema = new GraphQLSchema({
   query: QueryType,
 });
 
-console.log(printSchema(schema));
+// console.log(printSchema(schema));
 
 /* 5.2
 
