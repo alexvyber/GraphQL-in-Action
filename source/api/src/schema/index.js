@@ -31,7 +31,7 @@ const QueryType = new GraphQLObjectType({
     // stupid field
     randomBoolean: {
       type: GraphQLBoolean,
-
+      description: "Returns random boolean just for fun",
       resolve: () => (Math.random() > 0.5 ? false : true),
     },
 
@@ -60,35 +60,6 @@ export const schema = new GraphQLSchema({
 });
 
 console.log(printSchema(schema));
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
 
 /* 5.2
 

@@ -1,6 +1,6 @@
-import mdb from 'mongodb';
+import mdb from "mongodb";
 
-import { mdbConnectionString } from '../config';
+import { mdbConnectionString } from "../config";
 
 export default async function mongoClient() {
   const client = new mdb.MongoClient(mdbConnectionString, {
@@ -14,7 +14,7 @@ export default async function mongoClient() {
     // Test the connection
     const collections = await mdb.collections();
     console.log(
-      'Connected to MongoDB | Collections count:',
+      "Connected to MongoDB | Collections count:",
       collections.length
     );
 
@@ -23,7 +23,7 @@ export default async function mongoClient() {
       mdbClose: () => client.close(),
     };
   } catch (err) {
-    console.error('Error in MongoDB Client', err);
+    console.error("Error in MongoDB Client", err);
     process.exit(1);
   }
 }

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import { useStore } from '../store';
-import Search from './Search';
-import TaskSummary from './TaskSummary';
+import { useStore } from "../store";
+import Search from "./Search";
+import TaskSummary from "./TaskSummary";
 
 /** GIA NOTES
  * Define GraphQL operations here...
@@ -11,21 +11,21 @@ import TaskSummary from './TaskSummary';
 const mockTasks = [
   {
     id: 1,
-    content: 'Mock content #1',
-    author: { username: 'mock-author' },
-    tags: ['tag1', 'tag2'],
+    content: "Mock content #1",
+    author: { username: "mock-author" },
+    tags: ["tag1", "tag2"],
   },
   {
     id: 2,
-    content: 'Mock content #2',
-    author: { username: 'mock-author' },
-    tags: ['tag1', 'tag2'],
+    content: "Mock content #2",
+    author: { username: "mock-author" },
+    tags: ["tag1", "tag2"],
   },
   {
     id: 3,
-    content: 'Mock content #3',
-    author: { username: 'mock-author' },
-    tags: ['tag1', 'tag2'],
+    content: "Mock content #3",
+    author: { username: "mock-author" },
+    tags: ["tag1", "tag2"],
   },
 ];
 

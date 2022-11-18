@@ -1,9 +1,9 @@
-import 'regenerator-runtime/runtime';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import "regenerator-runtime/runtime";
+import React from "react";
+import ReactDOM from "react-dom";
 
-import { useStoreObject, Provider } from './store';
-import Root from './components/Root';
+import { useStoreObject, Provider } from "./store";
+import Root from "./components/Root";
 
 export default function App() {
   const store = useStoreObject();
@@ -14,4 +14,4 @@ export default function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));

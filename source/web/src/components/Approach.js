@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { useStore } from '../store';
-import Errors from './Errors';
+import { useStore } from "../store";
+import Errors from "./Errors";
 
 /** GIA NOTES
  * Define GraphQL operations here...
@@ -39,7 +39,7 @@ export default function Approach({ approach, isHighlighted }) {
         viewBox="0 0 36 36"
         fill="#999"
       >
-        {direction === 'UP' ? (
+        {direction === "UP" ? (
           <path d="M 2 26 h32 L18 10 2 26 z"></path>
         ) : (
           <path d="M 2 10 h32 L18 26 2 10 z"></path>
@@ -52,9 +52,9 @@ export default function Approach({ approach, isHighlighted }) {
     <div className={`box highlighted-${isHighlighted}`}>
       <div className="approach">
         <div className="vote">
-          {renderVoteButton('UP')}
+          {renderVoteButton("UP")}
           {voteCount}
-          {renderVoteButton('DOWN')}
+          {renderVoteButton("DOWN")}
         </div>
         <div className="main">
           <pre className="code">{approach.content}</pre>

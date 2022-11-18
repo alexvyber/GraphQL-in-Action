@@ -1,29 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { useStore } from '../store';
-import Errors from './Errors';
+import { useStore } from "../store";
+import Errors from "./Errors";
 
 /** GIA NOTES
  * Define GraphQL operations here...
  */
 
 export default function NewTask() {
-  const {
-    useLocalAppState,
-    setLocalAppState,
-    request,
-    AppLink,
-  } = useStore();
+  const { useLocalAppState, setLocalAppState, request, AppLink } = useStore();
   const [uiErrors, setUIErrors] = useState([]);
 
-  const user = useLocalAppState('user');
+  const user = useLocalAppState("user");
 
   if (!user) {
     return (
       <div className="box">
-        <div className="center">
-          Please login to create a Task record
-        </div>
+        <div className="center">Please login to create a Task record</div>
       </div>
     );
   }
@@ -53,7 +46,7 @@ export default function NewTask() {
 
   return (
     <div className="main-container">
-      <AppLink to="Home">{'<'} Cancel</AppLink>
+      <AppLink to="Home">{"<"} Cancel</AppLink>
       <div className="box box-primary">
         <form method="POST" onSubmit={handleNewTaskSubmit}>
           <div className="form-entry">
@@ -80,8 +73,8 @@ export default function NewTask() {
 
           <div className="form-entry">
             <label>
-              <input type="checkbox" name="private" /> Make this a
-              private entry (only for your account)
+              <input type="checkbox" name="private" /> Make this a private entry
+              (only for your account)
             </label>
           </div>
           <Errors errors={uiErrors} />

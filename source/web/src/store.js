@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import fetch from 'cross-fetch';
+import React, { useState } from "react";
+import fetch from "cross-fetch";
 
-import * as config from './config';
+import * as config from "./config";
 
 const initialLocalAppState = {
-  component: { name: 'Home', props: {} },
-  user: JSON.parse(window.localStorage.getItem('azdev:user')),
+  component: { name: "Home", props: {} },
+  user: JSON.parse(window.localStorage.getItem("azdev:user")),
 };
 
 // The useStoreObject is a custom hook function designed

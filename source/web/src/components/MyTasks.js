@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import { useStore } from '../store';
-import TaskSummary from './TaskSummary';
+import { useStore } from "../store";
+import TaskSummary from "./TaskSummary";
 
 /** GIA NOTES
  * Define GraphQL operations here...

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import { useStore } from '../store';
-import NewApproach from './NewApproach';
-import Approach from './Approach';
-import TaskSummary from './TaskSummary';
+import { useStore } from "../store";
+import NewApproach from "./NewApproach";
+import Approach from "./Approach";
+import TaskSummary from "./TaskSummary";
 
 /** GIA NOTES
  * Define GraphQL operations here...
@@ -11,19 +11,19 @@ import TaskSummary from './TaskSummary';
 
 const mockTaskInfo = {
   id: 42,
-  content: 'Mock Task content',
-  author: { username: 'mock-author' },
-  tags: ['tag1', 'tag2'],
+  content: "Mock Task content",
+  author: { username: "mock-author" },
+  tags: ["tag1", "tag2"],
   approachList: [
     {
       id: 42,
-      content: 'Mock Approach content',
-      author: { username: 'mock-author' },
+      content: "Mock Approach content",
+      author: { username: "mock-author" },
       voteCount: 0,
       detailList: [
         {
-          content: 'Mock note...',
-          category: 'NOTE',
+          content: "Mock note...",
+          category: "NOTE",
         },
       ],
     },
@@ -66,15 +66,12 @@ export default function TaskPage({ taskId }) {
 
   return (
     <div>
-      <AppLink to="Home">{'<'} Home</AppLink>
+      <AppLink to="Home">{"<"} Home</AppLink>
       <TaskSummary task={taskInfo} />
       <div>
         <div>
           {showAddApproach ? (
-            <NewApproach
-              taskId={taskId}
-              onSuccess={handleAddNewApproach}
-            />
+            <NewApproach taskId={taskId} onSuccess={handleAddNewApproach} />
           ) : (
             <div className="center y-spaced">
               <button

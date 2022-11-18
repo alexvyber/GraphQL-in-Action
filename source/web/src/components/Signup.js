@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { useStore } from '../store';
-import Errors from './Errors';
+import { useStore } from "../store";
+import Errors from "./Errors";
 
 /** GIA NOTES
  * Define GraphQL operations here...
@@ -14,7 +14,7 @@ export default function Signup() {
     event.preventDefault();
     const input = event.target.elements;
     if (input.password.value !== input.confirmPassword.value) {
-      return setUIErrors([{ message: 'Password mismatch' }]);
+      return setUIErrors([{ message: "Password mismatch" }]);
     }
 
     /** GIA NOTES
@@ -70,11 +70,7 @@ export default function Signup() {
             <div className="form-entry">
               <label>
                 CONFIRM PASSWORD
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  required
-                />
+                <input type="password" name="confirmPassword" required />
               </label>
             </div>
           </div>

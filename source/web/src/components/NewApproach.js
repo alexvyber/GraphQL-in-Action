@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import { useStore } from '../store';
-import Errors from './Errors';
+import { useStore } from "../store";
+import Errors from "./Errors";
 
 /** GIA NOTES
  * Define GraphQL operations here...
@@ -28,7 +28,7 @@ export default function NewApproach({ taskId, onSuccess }) {
     }
   }, [detailCategories, request]);
 
-  const user = useLocalAppState('user');
+  const user = useLocalAppState("user");
 
   if (!user) {
     return (
@@ -100,9 +100,7 @@ export default function NewApproach({ taskId, onSuccess }) {
             <button
               type="button"
               className="y-spaced"
-              onClick={() =>
-                setDetailRows((rows) => [...rows, rows.length])
-              }
+              onClick={() => setDetailRows((rows) => [...rows, rows.length])}
             >
               + Add more details
             </button>
