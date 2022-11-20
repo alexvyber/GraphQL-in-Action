@@ -10,6 +10,8 @@ import pgApiWrapper from "./db/pg-api"
 
 import * as config from "./config"
 
+import DataLoader from "dataloader"
+
 async function main() {
   const server = express()
 
@@ -30,12 +32,18 @@ async function main() {
   server.use(
     "/graphql",
 
-    graphqlHTTP({
-      schema,
-      context: { pgApi },
-      graphiql: true,
-      customFormatErrorFn: customError,
-    }),
+    (req, res) => {
+      const loaders = {
+        users: new DataLoader((userIds) => pgApi.usersInfo(userIds)),
+      }
+
+      graphqlHTTP({
+        schema,
+        context: { pgApi, loaders },
+        graphiql: true,
+        customFormatErrorFn: customError,
+      })(req, res)
+    },
   )
 
   // This line rus the server

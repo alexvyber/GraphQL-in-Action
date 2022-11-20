@@ -5,7 +5,7 @@
   "scripts": {
     "build:dbs": "docker-compose -f dev-dbs/docker.yml build",
     "start:dbs": "docker-compose -f dev-dbs/docker.yml up",
-    "dev:server": "(cd api && nodemon -r esm src/server.js)",
+    "dev": "(cd api && nodemon -r esm src/server.js)",
     "start:client": "(cd web/src && rimraf .cache dist && parcel index.html)",
     "start:blank-dbs": "docker-compose -f dev-dbs/docker-blank.yml up"
   },
@@ -13,6 +13,7 @@
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "cross-fetch": "^3.0.6",
+    "dataloader": "^2.1.0",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",

@@ -11,7 +11,7 @@ import User from "./user"
 
 import Approach from "./approach"
 
-import { extractPrefixedColumns } from "../../utils"
+// import { extractPrefixedColumns } from "../../utils"
 
 const Task = new GraphQLObjectType({
   name: "Task",
@@ -33,8 +33,10 @@ const Task = new GraphQLObjectType({
     },
     author: {
       type: new GraphQLNonNull(User),
-      resolve: (prefixedObject) =>
-        extractPrefixedColumns({ prefixedObject, prefix: "author" }),
+      resolve: (source, args, { loaders }) => {
+        // const res = extractPrefixedColumns({ prefixedObject, prefix: "author" })
+        return loaders.users.load(source.userId)
+      },
     },
     approachList: {
       type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Approach))),
