@@ -1,9 +1,4 @@
-import {
-  GraphQLID,
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLNonNull,
-} from "graphql"
+import { GraphQLID, GraphQLObjectType, GraphQLString, GraphQLNonNull } from "graphql"
 
 const User = new GraphQLObjectType({
   name: "User",
@@ -13,9 +8,9 @@ const User = new GraphQLObjectType({
     name: {
       type: new GraphQLNonNull(GraphQLString),
       resolve: ({ firstName, lastName }) =>
-        [firstName, lastName].filter(Boolean).join(" "),
-    },
-  },
+        [firstName, lastName].filter(Boolean).join(" ")
+    }
+  }
 })
 
 export default User

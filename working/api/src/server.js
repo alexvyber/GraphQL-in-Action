@@ -34,7 +34,13 @@ async function main() {
 
     (req, res) => {
       const loaders = {
-        users: new DataLoader((userIds) => pgApi.usersInfo(userIds)),
+        users: new DataLoader(userIds => pgApi.usersInfo(userIds)),
+        tasks: new DataLoader(taskIds => pgApi.tasksInfo(taskIds)),
+        approachLists: new DataLoader(taskIds => pgApi.approachLists(taskIds)),
+        tasksByTypes: new DataLoader(types => pgApi.tasksByTypes(types)),
+        searchResults: new DataLoader(searchTerms =>
+          pgApi.searchResults(searchTerms)
+        ),
       }
 
       graphqlHTTP({
@@ -43,7 +49,7 @@ async function main() {
         graphiql: true,
         customFormatErrorFn: customError,
       })(req, res)
-    },
+    }
   )
 
   // This line rus the server

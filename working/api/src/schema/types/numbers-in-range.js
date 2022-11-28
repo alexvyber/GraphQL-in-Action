@@ -1,9 +1,4 @@
-import {
-  GraphQLObjectType,
-  GraphQLInt,
-  GraphQLNonNull,
-  GraphQLFloat,
-} from "graphql"
+import { GraphQLObjectType, GraphQLInt, GraphQLNonNull, GraphQLFloat } from "graphql"
 
 const NumbersInRange = new GraphQLObjectType({
   name: "NumbersInRange",
@@ -11,17 +6,17 @@ const NumbersInRange = new GraphQLObjectType({
   fields: {
     sum: {
       description: "Sum of all whole numbers in the range",
-      type: new GraphQLNonNull(GraphQLInt),
+      type: new GraphQLNonNull(GraphQLInt)
     },
     count: {
       description: "Count of all whole numbers in the range",
-      type: new GraphQLNonNull(GraphQLInt),
+      type: new GraphQLNonNull(GraphQLInt)
     },
     avg: {
       description: "The average of all whole numbers in the range",
-      type: new GraphQLNonNull(GraphQLFloat),
-    },
-  },
+      type: new GraphQLNonNull(GraphQLFloat)
+    }
+  }
 })
 
 export default NumbersInRange

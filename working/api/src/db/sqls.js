@@ -8,7 +8,7 @@ const views = {
         u.created_at AS "author_createdAt"
     FROM azdev.tasks t
     JOIN azdev.users u ON (t.user_id = u.id)
-  `,
+  `
 }
 
 export default {
@@ -172,5 +172,5 @@ export default {
   userDelete: `
     DELETE FROM azdev.users
     WHERE id = $1;
-  `,
+  `
 }
