@@ -1,4 +1,9 @@
-import { GraphQLObjectType, GraphQLInt, GraphQLNonNull, GraphQLFloat } from "graphql"
+import {
+  GraphQLObjectType,
+  GraphQLInt,
+  GraphQLNonNull,
+  GraphQLFloat
+} from "graphql"
 
 const NumbersInRange = new GraphQLObjectType({
   name: "NumbersInRange",

@@ -37,7 +37,7 @@ export default function MyTasks() {
             You have not created any Task entries yet
           </div>
         )}
-        {myTaskList.map((task) => (
+        {myTaskList.map(task => (
           <TaskSummary key={task.id} task={task} link={true} />
         ))}
       </div>

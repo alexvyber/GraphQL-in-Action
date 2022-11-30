@@ -5,12 +5,12 @@ import { useStore } from "../store"
 export default function Navbar({ user }) {
   const { setLocalAppState, AppLink } = useStore()
 
-  const handleLogout = (event) => {
+  const handleLogout = event => {
     event.preventDefault()
     window.localStorage.removeItem("azdev:user")
     setLocalAppState({
       component: { name: "Home" },
-      user: null,
+      user: null
     })
   }
 

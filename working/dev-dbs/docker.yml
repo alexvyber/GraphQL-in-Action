@@ -14,14 +14,14 @@ services:
       - PGDATA=azdev-data
     networks:
       - graphql-in-action
-  # mongo:
-  #   container_name: gia_mongo
-  #   image: agilelabs/gia-mongo:main
-  #   command: --dbpath azdev-data/db
-  #   expose:
-  #     - 27017
-  #   ports:
-  #     - "27017:27017"
+  mongo:
+    container_name: gia_mongo
+    image: agilelabs/gia-mongo:main
+    command: --dbpath azdev-data/db
+    expose:
+      - 27017
+    ports:
+      - "27017:27017"
 
 networks:
   graphql-in-action:

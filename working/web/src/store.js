@@ -5,7 +5,7 @@ import * as config from "./config"
 
 const initialLocalAppState = {
   component: { name: "Home", props: {} },
-  user: JSON.parse(window.localStorage.getItem("azdev:user")),
+  user: JSON.parse(window.localStorage.getItem("azdev:user"))
 }
 
 // The useStoreObject is a custom hook function designed
@@ -23,16 +23,16 @@ export const useStoreObject = () => {
     if (stateMapper.length === 1) {
       return state[stateMapper[0]]
     }
-    return stateMapper.map((element) => state[element])
+    return stateMapper.map(element => state[element])
   }
 
   // This function shallow-merges a newState object
   // with the current local app state object
-  const setLocalAppState = (newState) => {
+  const setLocalAppState = newState => {
     if (newState.component) {
       newState.component.props = newState.component.props ?? {}
     }
-    setState((currentState) => {
+    setState(currentState => {
       return { ...currentState, ...newState }
     })
   }
@@ -42,10 +42,10 @@ export const useStoreObject = () => {
   // in the single-page app. The `to` prop is expected to be
   // a React component (like `Home` or `TaskPage`)
   const AppLink = ({ children, to, ...props }) => {
-    const handleClick = (event) => {
+    const handleClick = event => {
       event.preventDefault()
       setLocalAppState({
-        component: { name: to, props },
+        component: { name: to, props }
       })
     }
     return (
@@ -72,7 +72,7 @@ export const useStoreObject = () => {
     useLocalAppState,
     setLocalAppState,
     AppLink,
-    request,
+    request
   }
 }
 

@@ -10,7 +10,7 @@ import Errors from "./Errors"
 export default function Login() {
   const { request, setLocalAppState } = useStore()
   const [uiErrors, setUIErrors] = useState()
-  const handleLogin = async (event) => {
+  const handleLogin = async event => {
     event.preventDefault()
     const input = event.target.elements
     /** GIA NOTES

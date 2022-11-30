@@ -2,7 +2,7 @@ import {
   GraphQLID,
   GraphQLInterfaceType,
   GraphQLNonNull,
-  GraphQLString,
+  GraphQLString
 } from "graphql"
 
 import Task from "./task"
@@ -12,7 +12,7 @@ const SearchResultItem = new GraphQLInterfaceType({
   name: "SearchResultItem",
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLID) },
-    content: { type: new GraphQLNonNull(GraphQLString) },
+    content: { type: new GraphQLNonNull(GraphQLString) }
   }),
   resolveType(obj) {
     if (obj.type === "task") {
@@ -21,7 +21,7 @@ const SearchResultItem = new GraphQLInterfaceType({
     if (obj.type === "approach") {
       return Approach
     }
-  },
+  }
 })
 
 export default SearchResultItem

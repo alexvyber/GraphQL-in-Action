@@ -12,7 +12,7 @@ export default function Approach({ approach, isHighlighted }) {
   const [uiErrors, setUIErrors] = useState()
   const [voteCount, setVoteCount] = useState(approach.voteCount)
 
-  const handleVote = (direction) => async (event) => {
+  const handleVote = direction => async event => {
     event.preventDefault()
     /** GIA NOTES
      *
@@ -30,7 +30,7 @@ export default function Approach({ approach, isHighlighted }) {
     */
   }
 
-  const renderVoteButton = (direction) => (
+  const renderVoteButton = direction => (
     <button className="border-none" onClick={handleVote(direction)}>
       <svg
         aria-hidden="true"

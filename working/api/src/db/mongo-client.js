@@ -5,7 +5,7 @@ import { mdbConnectionString } from "../config"
 export default async function mongoClient() {
   const client = new mdb.MongoClient(mdbConnectionString, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
   try {
     await client.connect()
@@ -17,7 +17,7 @@ export default async function mongoClient() {
 
     return {
       mdb,
-      mdbClose: () => client.close(),
+      mdbClose: () => client.close()
     }
   } catch (err) {
     console.error("Error in MongoDB Client", err)

@@ -3,7 +3,7 @@ import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
-  GraphQLNonNull,
+  GraphQLNonNull
 } from "graphql"
 
 import User from "./user"
@@ -19,17 +19,17 @@ const Approach = new GraphQLObjectType({
     voteCount: { type: new GraphQLNonNull(GraphQLInt) },
     createdAt: {
       type: new GraphQLNonNull(GraphQLString),
-      resolve: ({ createdAt }) => createdAt.toISOString(),
+      resolve: ({ createdAt }) => createdAt.toISOString()
     },
     author: {
       type: new GraphQLNonNull(User),
-      resolve: (source, args, { loaders }) => loaders.users.load(source.userId),
+      resolve: (source, args, { loaders }) => loaders.users.load(source.userId)
     },
     task: {
       type: new GraphQLNonNull(Task),
-      resolve: (source, args, { loaders }) => loaders.tasks.load(source.taskId),
-    },
-  }),
+      resolve: (source, args, { loaders }) => loaders.tasks.load(source.taskId)
+    }
+  })
 })
 
 export default Approach

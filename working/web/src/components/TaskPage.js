@@ -23,11 +23,11 @@ const mockTaskInfo = {
       detailList: [
         {
           content: "Mock note...",
-          category: "NOTE",
-        },
-      ],
-    },
-  ],
+          category: "NOTE"
+        }
+      ]
+    }
+  ]
 }
 
 export default function TaskPage({ taskId }) {
@@ -55,10 +55,10 @@ export default function TaskPage({ taskId }) {
     return <div className="loading">Loading...</div>
   }
 
-  const handleAddNewApproach = (newApproach) => {
-    setTaskInfo((pTask) => ({
+  const handleAddNewApproach = newApproach => {
+    setTaskInfo(pTask => ({
       ...pTask,
-      approachList: [newApproach, ...pTask.approachList],
+      approachList: [newApproach, ...pTask.approachList]
     }))
     setHighlightedApproachId(newApproach.id)
     setShowAddApproach(false)
@@ -84,7 +84,7 @@ export default function TaskPage({ taskId }) {
           )}
         </div>
         <h2>Approaches ({taskInfo.approachList.length})</h2>
-        {taskInfo.approachList.map((approach) => (
+        {taskInfo.approachList.map(approach => (
           <div key={approach.id} id={approach.id}>
             <Approach
               approach={approach}

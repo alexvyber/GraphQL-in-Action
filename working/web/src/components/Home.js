@@ -13,20 +13,20 @@ const mockTasks = [
     id: 1,
     content: "Mock content #1",
     author: { username: "mock-author" },
-    tags: ["tag1", "tag2"],
+    tags: ["tag1", "tag2"]
   },
   {
     id: 2,
     content: "Mock content #2",
     author: { username: "mock-author" },
-    tags: ["tag1", "tag2"],
+    tags: ["tag1", "tag2"]
   },
   {
     id: 3,
     content: "Mock content #3",
     author: { username: "mock-author" },
-    tags: ["tag1", "tag2"],
-  },
+    tags: ["tag1", "tag2"]
+  }
 ]
 
 export default function Home() {
@@ -55,7 +55,7 @@ export default function Home() {
       <Search />
       <div>
         <h1>Latest</h1>
-        {taskList.map((task) => (
+        {taskList.map(task => (
           <TaskSummary key={task.id} task={task} link={true} />
         ))}
       </div>

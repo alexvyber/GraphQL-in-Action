@@ -10,12 +10,12 @@ export default function Search({ searchTerm = null }) {
   const { setLocalAppState, request, AppLink } = useStore()
   const [searchResults, setSearchResults] = useState(null)
 
-  const handleSearchSubmit = async (event) => {
+  const handleSearchSubmit = async event => {
     event.preventDefault()
     const term = event.target.search.value
 
     setLocalAppState({
-      component: { name: "Search", props: { searchTerm: term } },
+      component: { name: "Search", props: { searchTerm: term } }
     })
   }
 

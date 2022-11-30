@@ -21,7 +21,7 @@ export default function TaskSummary({ task, link = false }) {
       <div className="box-footer">
         <div className="text-secondary">{task.author.username}</div>
         <div className="tags">
-          {task.tags.map((tag) => (
+          {task.tags.map(tag => (
             <span key={tag} className="box-label">
               {tag}
             </span>

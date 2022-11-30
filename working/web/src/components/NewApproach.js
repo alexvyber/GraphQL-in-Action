@@ -40,13 +40,13 @@ export default function NewApproach({ taskId, onSuccess }) {
     )
   }
 
-  const handleNewApproachSubmit = async (event) => {
+  const handleNewApproachSubmit = async event => {
     event.preventDefault()
     setUIErrors([])
     const input = event.target.elements
-    const detailList = detailRows.map((detailId) => ({
+    const detailList = detailRows.map(detailId => ({
       category: input[`detail-category-${detailId}`].value,
-      content: input[`detail-content-${detailId}`].value,
+      content: input[`detail-content-${detailId}`].value
     }))
     /** GIA NOTES
      *
@@ -80,10 +80,10 @@ export default function NewApproach({ taskId, onSuccess }) {
           <div className="form-entry">
             <label>
               DETAILS
-              {detailRows.map((detailId) => (
+              {detailRows.map(detailId => (
                 <div key={detailId} className="details-row">
                   <select name={`detail-category-${detailId}`}>
-                    {detailCategories.map((category) => (
+                    {detailCategories.map(category => (
                       <option key={category.name} value={category.name}>
                         {category.name}
                       </option>
@@ -100,7 +100,7 @@ export default function NewApproach({ taskId, onSuccess }) {
             <button
               type="button"
               className="y-spaced"
-              onClick={() => setDetailRows((rows) => [...rows, rows.length])}
+              onClick={() => setDetailRows(rows => [...rows, rows.length])}
             >
               + Add more details
             </button>

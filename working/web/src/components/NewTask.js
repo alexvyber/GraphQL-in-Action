@@ -21,7 +21,7 @@ export default function NewTask() {
     )
   }
 
-  const handleNewTaskSubmit = async (event) => {
+  const handleNewTaskSubmit = async event => {
     event.preventDefault()
     const input = event.target.elements
 

@@ -10,7 +10,7 @@ import Errors from "./Errors"
 export default function Signup() {
   const { request, setLocalAppState } = useStore()
   const [uiErrors, setUIErrors] = useState()
-  const handleSignup = async (event) => {
+  const handleSignup = async event => {
     event.preventDefault()
     const input = event.target.elements
     if (input.password.value !== input.confirmPassword.value) {
