@@ -1,0 +1,3 @@
+[submodule "source"]
+	path = source
+	url = https://github.com/jscomplete/graphql-in-action.git
