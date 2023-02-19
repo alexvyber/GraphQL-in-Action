@@ -1,6 +1,5 @@
-import React from "react"
-
 import { useStore } from "../store"
+import React from "react"
 
 /** GIA NOTES
  * Define GraphQL Operations here...

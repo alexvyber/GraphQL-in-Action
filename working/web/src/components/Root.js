@@ -1,8 +1,7 @@
-import React from "react"
-
 import { useStore } from "../store"
-import * as mainComponents from "./index"
 import Navbar from "./Navbar"
+import * as mainComponents from "./index"
+import React from "react"
 
 export default function Root() {
   const { useLocalAppState } = useStore()

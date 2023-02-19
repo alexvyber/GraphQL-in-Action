@@ -1,6 +1,5 @@
-import mdb from "mongodb"
-
 import { mdbConnectionString } from "../config"
+import mdb from "mongodb"
 
 export default async function mongoClient() {
   const client = new mdb.MongoClient(mdbConnectionString, {

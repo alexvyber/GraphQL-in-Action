@@ -1,3 +1,9 @@
+import { numbersInRangeObject } from "../utils"
+import NumbersInRange from "./types/numbers-in-range"
+import SearchResultItem from "./types/search-result-item"
+import Task from "./types/task"
+import { Me } from "./types/user"
+import { SomeShit } from "./types/someShit"
 import {
   GraphQLSchema,
   GraphQLObjectType,
@@ -7,14 +13,8 @@ import {
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
-  printSchema
+  printSchema,
 } from "graphql"
-import NumbersInRange from "./types/numbers-in-range"
-import { numbersInRangeObject } from "../utils"
-
-import Task from "./types/task"
-import SearchResultItem from "./types/search-result-item"
-import { Me } from "./types/user"
 
 export const QueryType = new GraphQLObjectType({
   name: "Query",
@@ -25,7 +25,7 @@ export const QueryType = new GraphQLObjectType({
       type: Me,
       resolve: async (_source, _args, { currentUser }) => {
         return currentUser
-      }
+      },
     },
 
     // time
@@ -39,14 +39,14 @@ export const QueryType = new GraphQLObjectType({
             resolve(isoString.slice(11, 19))
           }, 0)
         })
-      }
+      },
     },
 
     // stupid field
     randomBoolean: {
       type: GraphQLBoolean,
       description: "Returns random boolean just for fun",
-      resolve: () => (Math.random() > 0.5 ? false : true)
+      resolve: () => (Math.random() > 0.5 ? false : true),
     },
 
     // range numbers
@@ -57,21 +57,21 @@ export const QueryType = new GraphQLObjectType({
       args: {
         begin: {
           type: new GraphQLNonNull(GraphQLInt),
-          description: "The number to begin the range"
+          description: "The number to begin the range",
         },
         end: {
           type: new GraphQLNonNull(GraphQLInt),
-          description: "The number to end the range"
-        }
+          description: "The number to end the range",
+        },
       },
-      resolve: (_source, { begin, end }) => numbersInRangeObject(begin, end)
+      resolve: (_source, { begin, end }) => numbersInRangeObject(begin, end),
     },
 
     // tasks
     taskMainList: {
       type: new GraphQLList(new GraphQLNonNull(Task)),
       resolve: async (_source, _args, { loaders }) =>
-        loaders.tasksByTypes.load("latest")
+        loaders.tasksByTypes.load("latest"),
     },
 
     // taskinfo
@@ -79,29 +79,36 @@ export const QueryType = new GraphQLObjectType({
       type: Task,
       args: {
         id: {
-          type: new GraphQLNonNull(GraphQLID)
-        }
+          type: new GraphQLNonNull(GraphQLID),
+        },
       },
-      resolve: async (_source, args, { loaders }) => loaders.tasks.load(args.id)
+      resolve: async (_source, args, { loaders }) =>
+        loaders.tasks.load(args.id),
     },
 
     // search
     search: {
       type: new GraphQLNonNull(
-        new GraphQLList(new GraphQLNonNull(SearchResultItem))
+        new GraphQLList(new GraphQLNonNull(SearchResultItem)),
       ),
       args: {
-        term: { type: new GraphQLNonNull(GraphQLString) }
+        term: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve: async (_source, args, { loaders }) => {
         return loaders.searchResults.load(args.term)
-      }
-    }
-  })
+      },
+    },
+
+    // someShit
+    someShit: {
+      type: new GraphQLNonNull(SomeShit),
+      resolve: async () => ["Some", "Shit"],
+    },
+  }),
 })
 
 export const schema = new GraphQLSchema({
-  query: QueryType
+  query: QueryType,
 })
 
 console.log(printSchema(schema))

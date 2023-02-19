@@ -3,28 +3,28 @@ module.exports = {
     browser: true,
     node: true,
     commonjs: true,
-    es2020: true,
+    es2020: true
   },
   parserOptions: {
     ecmaVersion: 2020,
     ecmaFeatures: {
-      jsx: true,
+      jsx: true
     },
-    sourceType: 'module',
+    sourceType: "module"
   },
-  plugins: ['react', 'react-hooks'],
+  plugins: ["react", "react-hooks"],
   extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
   ],
   settings: {
     react: {
-      version: 'detect',
-    },
+      version: "detect"
+    }
   },
   rules: {
-    'react/prop-types': 'off',
-    'react/no-unescaped-entities': ['error', { forbid: ['>', '}'] }],
-  },
-};
+    "react/prop-types": "off",
+    "react/no-unescaped-entities": ["error", { forbid: [">", "}"] }]
+  }
+}

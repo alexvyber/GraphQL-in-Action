@@ -1,7 +1,6 @@
-import React, { useState } from "react"
-import fetch from "cross-fetch"
-
 import * as config from "./config"
+import fetch from "cross-fetch"
+import React, { useState } from "react"
 
 const initialLocalAppState = {
   component: { name: "Home", props: {} },

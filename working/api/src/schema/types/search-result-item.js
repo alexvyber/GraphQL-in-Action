@@ -1,12 +1,11 @@
+import Approach from "./approach"
+import Task from "./task"
 import {
   GraphQLID,
   GraphQLInterfaceType,
   GraphQLNonNull,
   GraphQLString
 } from "graphql"
-
-import Task from "./task"
-import Approach from "./approach"
 
 const SearchResultItem = new GraphQLInterfaceType({
   name: "SearchResultItem",

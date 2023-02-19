@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react"
-
 import { useStore } from "../store"
-import NewApproach from "./NewApproach"
 import Approach from "./Approach"
+import NewApproach from "./NewApproach"
 import TaskSummary from "./TaskSummary"
+import React, { useState, useEffect } from "react"
 
 /** GIA NOTES
  * Define GraphQL operations here...

@@ -31,8 +31,8 @@ const config: CodegenConfig = {
         constEnums: true,
         // withRefetchFn: true,
         skipTypename: true,
-        typesPrefix: "SHIT",
-        typesSuffix: "SHIT",
+        // typesPrefix: "SHIT",
+        // typesSuffix: "SHIT",
         // enumsAsTypes: true,
 
         useTypeImports: true,
@@ -48,9 +48,9 @@ const config: CodegenConfig = {
         },
       },
 
-      presetConfig: {
-        gqlTagName: "gql",
-      },
+      // presetConfig: {
+      //   gqlTagName: "gql",
+      // },
     },
   },
   ignoreNoDocuments: true,

@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build:dbs": "docker-compose -f dev-dbs/docker.yml build",
-    "start:dbs": "docker-compose -f dev-dbs/docker.yml up",
+    "db:build": "docker-compose -f dev-dbs/docker.yml build",
+    "db:dev": "docker-compose -f dev-dbs/docker.yml up",
     "dev": "(cd api && nodemon -r esm src/server.js)",
-    "start:client": "(cd web/src && rimraf .cache dist && parcel index.html)",
+    "client:dev": "(cd web/src && rimraf .cache dist && parcel index.html)",
     "start:blank-dbs": "docker-compose -f dev-dbs/docker-blank.yml up"
   },
   "dependencies": {

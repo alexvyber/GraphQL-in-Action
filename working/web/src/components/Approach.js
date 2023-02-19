@@ -1,7 +1,6 @@
-import React, { useState } from "react"
-
 import { useStore } from "../store"
 import Errors from "./Errors"
+import React, { useState } from "react"
 
 /** GIA NOTES
  * Define GraphQL operations here...

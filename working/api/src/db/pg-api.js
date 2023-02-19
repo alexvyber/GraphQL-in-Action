@@ -1,7 +1,6 @@
+import { randomString } from "../utils"
 import pgClient from "./pg-client"
 import sqls from "./sqls"
-
-import { randomString } from "../utils"
 
 const pgApiWrapper = async () => {
   const { pgPool } = await pgClient()
@@ -23,7 +22,7 @@ const pgApiWrapper = async () => {
     //
     approachList: async taskId => {
       const pgResp = await pgQuery(sqls.approachesForTaskIds, {
-        $1: [taskId]
+        $1: [taskId],
       })
       return pgResp.rows
     },
@@ -31,7 +30,7 @@ const pgApiWrapper = async () => {
     //
     approachLists: async taskIds => {
       const pgResp = await pgQuery(sqls.approachesForTaskIds, {
-        $1: taskIds
+        $1: taskIds,
       })
 
       return taskIds.map(taskId =>
@@ -43,7 +42,7 @@ const pgApiWrapper = async () => {
     tasksInfo: async ({ taskIds, currentUser }) => {
       const pgResp = await pgQuery(sqls.tasksFromIds, {
         $1: taskIds,
-        $2: currentUser ? currentUser.id : null
+        $2: currentUser ? currentUser.id : null,
       })
       return taskIds.map(taskId => pgResp.rows.find(row => taskId == row.id))
     },
@@ -65,7 +64,7 @@ const pgApiWrapper = async () => {
       const results = searchTerms.map(async searchTerm => {
         const pgResp = await pgQuery(sqls.searchResults, {
           $1: searchTerm,
-          $2: currentUser ? currentUser.id : null
+          $2: currentUser ? currentUser.id : null,
         })
         return pgResp.rows
       })
@@ -79,7 +78,7 @@ const pgApiWrapper = async () => {
       }
 
       const pgResp = await pgQuery(sqls.userFromAuthToken, {
-        $1: authToken
+        $1: authToken,
       })
       return pgResp.rows[0]
     },
@@ -87,7 +86,7 @@ const pgApiWrapper = async () => {
     //
     tasksForUsers: async userIds => {
       const pgResp = await pgQuery(sqls.tasksForUsers, {
-        $1: userIds
+        $1: userIds,
       })
       return userIds.map(userId =>
         pgResp.rows.filter(row => userId === row.userId)
@@ -99,7 +98,7 @@ const pgApiWrapper = async () => {
         const payload = { errors: [] }
         if (input.password.length < 6) {
           payload.errors.push({
-            message: "Use a stronger password"
+            message: "Use a stronger password",
           })
         }
 
@@ -110,7 +109,7 @@ const pgApiWrapper = async () => {
             $2: input.password,
             $3: input.firstName,
             $4: input.lastName,
-            $5: authToken
+            $5: authToken,
           })
 
           if (pgResp.rows[0]) {
@@ -126,14 +125,14 @@ const pgApiWrapper = async () => {
         const payload = { errors: [] }
         if (!input.username || !input.password) {
           payload.errors.push({
-            message: "Invalid username or password"
+            message: "Invalid username or password",
           })
         }
 
         if (payload.errors.length === 0) {
           const pgResp = await pgQuery(sqls.userFromCredentials, {
             $1: input.username.toLowerCase(),
-            $2: input.password
+            $2: input.password,
           })
 
           const user = pgResp.rows[0]
@@ -143,14 +142,14 @@ const pgApiWrapper = async () => {
 
             await pgQuery(sqls.userUpdateAuthToken, {
               $1: user.id,
-              $2: authToken
+              $2: authToken,
             })
 
             payload.user = user
             payload.authToken = authToken
           } else {
             payload.errors.push({
-              message: "Invalid username or password"
+              message: "Invalid username or password",
             })
           }
         }
@@ -164,7 +163,7 @@ const pgApiWrapper = async () => {
 
         if (input.content.length < 15) {
           payload.errors.push({
-            message: "Text is too short"
+            message: "Text is too short",
           })
         }
 
@@ -173,7 +172,7 @@ const pgApiWrapper = async () => {
             $1: currentUser.id,
             $2: input.content,
             $3: input.tags.join(","),
-            $4: input.isPrivate
+            $4: input.isPrivate,
           })
 
           if (pgResp.rows[0]) {
@@ -192,13 +191,13 @@ const pgApiWrapper = async () => {
           const pgResp = await pgQuery(sqls.approachInsert, {
             $1: currentUser.id,
             $2: input.content,
-            $3: taskId
+            $3: taskId,
           })
           if (pgResp.rows[0]) {
             payload.approach = pgResp.rows[0]
 
             await pgQuery(sqls.approachCountIncrement, {
-              $1: taskId
+              $1: taskId,
             })
             await mutators.approachDetailCreate(
               payload.approach.id,
@@ -216,7 +215,7 @@ const pgApiWrapper = async () => {
 
         const pgResp = await pgQuery(sqls.approachVote, {
           $1: approachId,
-          $2: input.up ? 1 : -1
+          $2: input.up ? 1 : -1,
         })
 
         if (pgResp.rows[0]) {
@@ -232,19 +231,19 @@ const pgApiWrapper = async () => {
 
         try {
           await pgQuery(sqls.userDelete, {
-            $1: currentUser.id
+            $1: currentUser.id,
           })
 
           payload.deletedUserId = currentUser.id
         } catch (err) {
           payload.errors.push({
-            message: "We were not able to delete this account"
+            message: "We were not able to delete this account",
           })
         }
 
         return payload
-      }
-    }
+      },
+    },
   }
 }
 

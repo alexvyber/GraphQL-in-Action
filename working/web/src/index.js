@@ -1,9 +1,8 @@
 import "regenerator-runtime/runtime"
+import Root from "./components/Root"
+import { useStoreObject, Provider } from "./store"
 import React from "react"
 import ReactDOM from "react-dom"
-
-import { useStoreObject, Provider } from "./store"
-import Root from "./components/Root"
 
 export default function App() {
   const store = useStoreObject()

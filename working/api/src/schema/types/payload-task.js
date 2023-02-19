@@ -1,7 +1,6 @@
-import { GraphQLObjectType, GraphQLNonNull, GraphQLList } from "graphql"
-
 import Task from "./task"
 import UserError from "./user-error"
+import { GraphQLObjectType, GraphQLNonNull, GraphQLList } from "graphql"
 
 const TaskPayload = new GraphQLObjectType({
   name: "TaskPayload",

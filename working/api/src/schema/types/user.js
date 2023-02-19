@@ -1,3 +1,4 @@
+import Task from "./task"
 import {
   GraphQLID,
   GraphQLObjectType,
@@ -5,8 +6,6 @@ import {
   GraphQLList,
   GraphQLNonNull
 } from "graphql"
-
-import Task from "./task"
 
 // ~~
 

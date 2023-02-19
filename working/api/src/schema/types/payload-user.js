@@ -1,11 +1,11 @@
+import User from "./user"
+import UserError from "./user-error"
 import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLNonNull,
   GraphQLList
 } from "graphql"
-import User from "./user"
-import UserError from "./user-error"
 
 const UserPayload = new GraphQLObjectType({
   name: "UserPayload",

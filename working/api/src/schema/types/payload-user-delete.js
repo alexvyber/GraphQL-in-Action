@@ -1,11 +1,10 @@
+import UserError from "./user-error"
 import {
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLID
 } from "graphql"
-
-import UserError from "./user-error"
 
 const UserDeletePayload = new GraphQLObjectType({
   name: "UserDeletePayload",

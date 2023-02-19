@@ -1,11 +1,10 @@
+import ApproachDetailInput from "./input-approach-detail"
 import {
   GraphQLInputObjectType,
   GraphQLString,
   GraphQLNonNull,
   GraphQLList
 } from "graphql"
-
-import ApproachDetailInput from "./input-approach-detail"
 
 const ApproachInput = new GraphQLInputObjectType({
   name: "ApproachInput",

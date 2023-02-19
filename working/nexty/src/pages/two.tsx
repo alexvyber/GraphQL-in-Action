@@ -1,25 +1,21 @@
 import React from "react"
 import { useQuery } from "urql"
 
-import "./App.css"
 // import Film from './Film';
 import { graphql } from "@/graphql/urql"
 
-const allFilmsWithVariablesQueryDocument = graphql(/* GraphQL */ `
-  query allFilmsWithVariablesQuery($first: Int!) {
-    allFilms(first: $first) {
-      edges {
-        node {
-          ...FilmItem
-        }
-      }
+const asdf = graphql(/* GraphQL */ `
+  query EvenMoreShit {
+    result: someShit {
+      id
     }
   }
 `)
 
 function App() {
   // `data` is typed!
-  // const [{ data }] = useQuery({ query: allFilmsWithVariablesQueryDocument, variables: { first: 10 } });
+  const all = useQuery({ query: asdf })
+  console.log("🚀 ~ App ~ all", all)
   return (
     <div className="App">
       {/* {data && (

@@ -1,10 +1,9 @@
-import pg from "pg"
-
 import { pgConnectionString } from "../config"
+import pg from "pg"
 
 export default async function pgClient() {
   const pgPool = new pg.Pool({
-    connectionString: pgConnectionString
+    connectionString: pgConnectionString,
   })
 
   // Test the connection
@@ -13,6 +12,7 @@ export default async function pgClient() {
     "select count(*) from information_schema.tables where table_schema = $1;",
     ["azdev"]
   )
+
   client.release()
 
   console.log(
@@ -27,6 +27,6 @@ export default async function pgClient() {
 
   return {
     pgPool,
-    pgClose: async () => await pgPool.end()
+    pgClose: async () => await pgPool.end(),
   }
 }

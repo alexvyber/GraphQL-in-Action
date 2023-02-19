@@ -1,14 +1,13 @@
-import { GraphQLNonNull, GraphQLID, GraphQLObjectType } from "graphql"
-
-import UserPayload from "./types/payload-user"
-import UserInput from "./types/input-user"
-import AuthInput from "./types/input-auth"
-import TaskPayload from "./types/payload-task"
-import TaskInput from "./types/input-task"
-import ApproachPayload from "./types/payload-approach"
 import ApproachInput from "./types/input-approach"
 import ApproachVoteInput from "./types/input-approach-vote"
+import AuthInput from "./types/input-auth"
+import TaskInput from "./types/input-task"
+import UserInput from "./types/input-user"
+import ApproachPayload from "./types/payload-approach"
+import TaskPayload from "./types/payload-task"
+import UserPayload from "./types/payload-user"
 import UserDeletePayload from "./types/payload-user-delete"
+import { GraphQLNonNull, GraphQLID, GraphQLObjectType } from "graphql"
 
 export const MutationType = new GraphQLObjectType({
   name: "Mutation",

@@ -1,6 +1,5 @@
-import { GraphQLObjectType, GraphQLString, GraphQLNonNull } from "graphql"
-
 import ApproachDetailCategory from "./approach-detail-category"
+import { GraphQLObjectType, GraphQLString, GraphQLNonNull } from "graphql"
 
 const ApproachDetail = new GraphQLObjectType({
   name: "ApproachDetail",

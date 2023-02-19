@@ -8,7 +8,7 @@ const client = new ApolloClient({
 })
 
 const urqlClient = createClient({
-  url: "http://localhost:4000/graphql",
+  url: "http://localhost:5000/graphql",
 })
 
 export default function App({ Component, pageProps }: AppProps) {

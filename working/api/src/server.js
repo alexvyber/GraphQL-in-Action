@@ -1,16 +1,13 @@
-import express from "express"
+import * as config from "./config"
+import mongoApiWrapper from "./db/mongo-api"
+import pgApiWrapper from "./db/pg-api"
+import { schema } from "./schema"
 import bodyParser from "body-parser"
 import cors from "cors"
-import morgan from "morgan"
-import { graphqlHTTP } from "express-graphql"
-import { schema } from "./schema"
-
-import pgApiWrapper from "./db/pg-api"
-import mongoApiWrapper from "./db/mongo-api"
-
-import * as config from "./config"
-
 import DataLoader from "dataloader"
+import express from "express"
+import { graphqlHTTP } from "express-graphql"
+import morgan from "morgan"
 
 async function main() {
   const server = express()
@@ -45,7 +42,7 @@ async function main() {
 
       if (authToken && !currentUser) {
         return res.status(401).send({
-          errors: [{ message: "Invalid access token" }]
+          errors: [{ message: "Invalid access token" }],
         })
       }
 
@@ -63,13 +60,13 @@ async function main() {
         tasksForUsers: new DataLoader(userIds => pgApi.tasksForUsers(userIds)),
         detailLists: new DataLoader(approachIds =>
           mongoApi.detailLists(approachIds)
-        )
+        ),
       }
 
       // mutators
       const mutators = {
         ...pgApi.mutators,
-        ...mongoApi.mutators
+        ...mongoApi.mutators,
       }
 
       // init graphql
@@ -77,7 +74,7 @@ async function main() {
         schema,
         context: { loaders, mutators, currentUser },
         graphiql: { headerEditorEnabled: true },
-        customFormatErrorFn: customError
+        customFormatErrorFn: customError,
       })(req, res)
     }
   )
@@ -93,7 +90,7 @@ function customError(err) {
     message: err.message,
     locations: err.locations,
     stack: err.stack ? err.stack.split("\n") : [],
-    path: err.path
+    path: err.path,
   }
 
   console.error("GraphQL Error", errorReport)

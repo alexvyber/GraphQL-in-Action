@@ -5,7 +5,6 @@ import styles from "@/styles/Home.module.css"
 import { useQuery } from "@apollo/client"
 import { MORE_SHIT, SOME_SHIT } from "@/graphql/queries/someShit"
 import { Some } from "@/components/some"
-import { useSomeShitQuery } from "@/graphql/__generated__/graphql"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -13,8 +12,6 @@ export default function Home() {
   // const { data } = useQuery(SOME_SHIT)
   // console.log("🚀 ~ Home ~ data", data?.result)
 
-  const asdf = useSomeShitQuery()
-  console.log("🚀 ~ Home ~ asdf", asdf)
   // const { data: moreShit } = useQuery(MORE_SHIT)
   // console.log("🚀 ~ Home ~ moreShit", moreShit?.result)
 
