@@ -9,6 +9,11 @@ import express from "express"
 import { graphqlHTTP } from "express-graphql"
 import morgan from "morgan"
 
+import { PubSub } from "graphql-subscriptions"
+const pubsub = new PubSub()
+
+const subscriptionsEndpoint = `ws://localhost:${config.port}/subscriptions`
+
 async function main() {
   const server = express()
 
@@ -50,16 +55,16 @@ async function main() {
       const loaders = {
         users: new DataLoader(userIds => pgApi.usersInfo(userIds)),
         tasks: new DataLoader(taskIds =>
-          pgApi.tasksInfo({ taskIds, currentUser })
+          pgApi.tasksInfo({ taskIds, currentUser }),
         ),
         approachLists: new DataLoader(taskIds => pgApi.approachLists(taskIds)),
         tasksByTypes: new DataLoader(types => pgApi.tasksByTypes(types)),
         searchResults: new DataLoader(searchTerms =>
-          pgApi.searchResults({ searchTerms, currentUser })
+          pgApi.searchResults({ searchTerms, currentUser }),
         ),
         tasksForUsers: new DataLoader(userIds => pgApi.tasksForUsers(userIds)),
         detailLists: new DataLoader(approachIds =>
-          mongoApi.detailLists(approachIds)
+          mongoApi.detailLists(approachIds),
         ),
       }
 
@@ -72,11 +77,12 @@ async function main() {
       // init graphql
       graphqlHTTP({
         schema,
-        context: { loaders, mutators, currentUser },
+        context: { loaders, mutators, currentUser, pubsub },
         graphiql: { headerEditorEnabled: true },
         customFormatErrorFn: customError,
+        subscriptionsEndpoint,
       })(req, res)
-    }
+    },
   )
 
   // This line rus the server
@@ -84,6 +90,10 @@ async function main() {
     console.log(`Server URL: http://localhost:${config.port}/`)
   })
 }
+
+main()
+
+//
 
 function customError(err) {
   const errorReport = {
@@ -99,5 +109,3 @@ function customError(err) {
     ? errorReport
     : { message: "Oops! Something went wrong! :(" }
 }
-
-main()

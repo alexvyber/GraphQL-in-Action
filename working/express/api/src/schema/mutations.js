@@ -6,8 +6,10 @@ import UserInput from "./types/input-user"
 import ApproachPayload from "./types/payload-approach"
 import TaskPayload from "./types/payload-task"
 import UserPayload from "./types/payload-user"
+import { SomePayload } from "./types/some-payload"
 import UserDeletePayload from "./types/payload-user-delete"
 import { GraphQLNonNull, GraphQLID, GraphQLObjectType } from "graphql"
+import { GraphQLBoolean } from "graphql"
 
 export const MutationType = new GraphQLObjectType({
   name: "Mutation",
@@ -16,30 +18,30 @@ export const MutationType = new GraphQLObjectType({
     userCreate: {
       type: new GraphQLNonNull(UserPayload),
       args: {
-        input: { type: new GraphQLNonNull(UserInput) }
+        input: { type: new GraphQLNonNull(UserInput) },
       },
       resolve: async (_source, { input }, { mutators }) =>
-        mutators.userCreate({ input })
+        mutators.userCreate({ input }),
     },
 
     //
     userLogin: {
       type: new GraphQLNonNull(UserPayload),
       args: {
-        input: { type: new GraphQLNonNull(AuthInput) }
+        input: { type: new GraphQLNonNull(AuthInput) },
       },
       resolve: async (_source, { input }, { mutators }) =>
-        mutators.userLogin({ input })
+        mutators.userLogin({ input }),
     },
 
     //
     taskCreate: {
       type: TaskPayload,
       args: {
-        input: { type: new GraphQLNonNull(TaskInput) }
+        input: { type: new GraphQLNonNull(TaskInput) },
       },
       resolve: async (_source, { input }, { mutators, currentUser }) =>
-        mutators.taskCreate({ input, currentUser })
+        mutators.taskCreate({ input, currentUser }),
     },
 
     //
@@ -47,15 +49,15 @@ export const MutationType = new GraphQLObjectType({
       type: ApproachPayload,
       args: {
         taskId: { type: new GraphQLNonNull(GraphQLID) },
-        input: { type: new GraphQLNonNull(ApproachInput) }
+        input: { type: new GraphQLNonNull(ApproachInput) },
       },
       resolve: async (_source, { taskId, input }, { mutators, currentUser }) =>
         mutators.approachCreate({
           taskId,
           input,
           currentUser,
-          mutators
-        })
+          mutators,
+        }),
     },
 
     //
@@ -63,11 +65,11 @@ export const MutationType = new GraphQLObjectType({
       type: ApproachPayload,
       args: {
         approachId: { type: new GraphQLNonNull(GraphQLID) },
-        input: { type: new GraphQLNonNull(ApproachVoteInput) }
+        input: { type: new GraphQLNonNull(ApproachVoteInput) },
       },
       resolve: async (_source, { approachId, input }, { mutators }) => {
         return mutators.approachVote({ approachId, input })
-      }
+      },
     },
 
     //
@@ -75,7 +77,22 @@ export const MutationType = new GraphQLObjectType({
       type: UserDeletePayload,
       resolve: async (_source, _args, { mutators, currentUser }) => {
         return mutators.userDelete({ currentUser })
-      }
-    }
-  })
+      },
+    },
+
+    //
+    some: {
+      type: GraphQLBoolean, // SomePayload,
+      resolve: async (_source, _args, { pubsub }) => {
+        console.log("🚀 ~ resolve: ~ pubsub:", pubsub)
+        // pubsub.publish({
+        //   topic: "some",
+        //   payload: {
+        //     newSome: "asdfasdf",
+        //   },
+        // })
+        return Math.random() > 0.5
+      },
+    },
+  }),
 })
