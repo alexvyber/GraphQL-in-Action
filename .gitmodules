@@ -1,3 +1,6 @@
 [submodule "source"]
 	path = source
 	url = https://github.com/jscomplete/graphql-in-action.git
+[submodule "z-source"]
+	path = z-source
+	url = https://github.com/jscomplete/graphql-in-action
